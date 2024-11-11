@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-import FlickrSearch from "./components/SearchImages";
+import FlickrSearch from "./components/FlickrSearch";
 
 export default function App() {
   return (

@@ -47,11 +47,6 @@ const FlickrSearch: React.FC = () => {
     }
   }
 
-
-  useEffect(() => {
-    fetchImages();
-  }, []);
-
   const imageUrls = images.map((image: any) => {
     return getImageURL(image);
   });
@@ -64,11 +59,14 @@ const FlickrSearch: React.FC = () => {
   return (
     <div id="main-container">
       <label htmlFor='search-input'>Image Description: </label>
-      <input type="text" placeholder="Flickr Search" value={query} onChange={(e) => handleInputChange(e.target.value)} />
+      <input id='search-input' type="text" placeholder="Flickr Search" value={query} onChange={(e) => handleInputChange(e.target.value)} />
       <button type='submit' onClick={fetchImages}>Search</button>
       {isLoading && <p>Is Loading...</p>}
       <div className="App-SearchResults">
-        {imageUrls.map(photo => <img key={photo} src={photo} alt="Flickr Search Photo Not Found" />)}
+        {imageUrls.map(photo => 
+        <div key={photo} className={'Image-Container'}>
+          <img src={photo} alt="Flickr Search Photo Not Found" />
+        </div>)}
       </div>
       {error && <p>{error}</p>}
     </div>
