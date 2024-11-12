@@ -1,23 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import { APIResponse } from "../types/FilckrSearch.types";
+import { getImageURL } from "../helpers/FilckrSearch.helpers";
 
 const API_KEY = '513f1c3c888abd4225b7f9a3105a275f';
-
-declare interface APIResponse {
-  photos: {
-    photo: Array<APIPhoto>;
-  }
-}
-
-declare interface APIPhoto {
-  id: string;
-  owner: string;
-  secret: string;
-  title: string;
-  server: string;
-  // "farm": 0,
-  // "title": "Stilo Car Institucional",
-}
 
 const FlickrSearch: React.FC = () => {
   const [query, setQuery] = useState<string>('');
@@ -58,10 +44,10 @@ const FlickrSearch: React.FC = () => {
 
   return (
     <div id="main-container">
-      <label htmlFor='search-input'>Image Description: </label>
-      <input id='search-input' type="text" placeholder="Flickr Search" value={query} onChange={(e) => handleInputChange(e.target.value)} />
-      <button type='submit' onClick={fetchImages}>Search</button>
-      {isLoading && <p>Is Loading...</p>}
+      <label id='search-input-label' htmlFor='search-input'>Image Description: </label>
+      <input id='search-input' type="text" placeholder="Type Keywords Here..." value={query} onChange={(e) => handleInputChange(e.target.value)} />
+      <button id='search-button' type='submit' onClick={fetchImages}>Search</button>
+      {isLoading && <p id='loading-p'>Is Loading...</p>}
       <div className="App-SearchResults">
         {imageUrls.map(photo => 
         <div key={photo} className={'Image-Container'}>
@@ -74,9 +60,5 @@ const FlickrSearch: React.FC = () => {
 };
 
 export default FlickrSearch;
-
-const getImageURL = (image: APIPhoto) => {
-  return `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_q.jpg`;
-};
 
 
