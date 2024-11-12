@@ -108,3 +108,22 @@
   opacity: 0;
   animation: jumpIn 0.6s ease forwards;
 }
+
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.span {
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}

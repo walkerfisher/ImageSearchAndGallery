@@ -9,6 +9,7 @@ export const useFlickrSearch = () => {
   const [images, setImages] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   async function fetchImages() {
     try {
@@ -39,14 +40,25 @@ export const useFlickrSearch = () => {
   function handleInputChange(value: string){
     setQuery(value);
     setImages([]);
+    setError(null);
   }
+
+  function toggleFavorite(url: string){
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(url)
+        ? prevFavorites.filter((fav) => fav !== url)
+        : [...prevFavorites, url]
+    );
+  };
 
   return {
     error,
+    favorites,
     fetchImages,
     handleInputChange,
     imageUrls,
     isLoading,
+    toggleFavorite,
     query,
   }
 }

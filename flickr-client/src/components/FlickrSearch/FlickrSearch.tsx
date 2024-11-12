@@ -5,10 +5,12 @@ const FlickrSearch: React.FC = () => {
   
   const {
     error,
+    favorites,
     fetchImages,
     handleInputChange,
     imageUrls,
     isLoading,
+    toggleFavorite,
     query,
   } = useFlickrSearch();
 
@@ -20,9 +22,25 @@ const FlickrSearch: React.FC = () => {
       {isLoading && <p id='loading-p'>Is Loading...</p>}
       <div className="App-SearchResults">
         {imageUrls.map(photo => 
-        <div key={photo} className={'Image-Container'}>
-          <img src={photo} alt="Flickr Search Photo Not Found" />
-        </div>)}
+          <div key={photo} className="Image-Container" style={{ position: 'relative' }}>
+            <img src={photo} alt="Flickr Search Photo Not Found" />
+            <button
+              className="favorite-button"
+              onClick={() => toggleFavorite(photo)}
+              style={{
+                backgroundColor: favorites.includes(photo) ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.15)',
+              }}
+            >
+              <span
+                className='span'
+                style={{
+                  color: favorites.includes(photo) ? 'red' : 'rgba(255, 0, 0, 0.2)',
+                }}
+              >
+                ❤
+              </span>
+            </button>
+          </div>)}
       </div>
       {error && <p>{error}</p>}
     </div>
