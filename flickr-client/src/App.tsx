@@ -1,8 +1,8 @@
 import React from "react";
 import "./styles.css";
 
-import FlickrSearch from "./components/FlickrSearch";
-import JumpInHeader from "./components/JumpInHeader";
+import FlickrSearch from "./components/FlickrSearch/FlickrSearch";
+import JumpInHeader from "./components/Header/JumpInHeader";
 
 export default function App() {
   return (

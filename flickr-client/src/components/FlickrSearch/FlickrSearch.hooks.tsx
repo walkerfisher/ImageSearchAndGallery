@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { APIResponse } from "../types/FilckrSearch.types";
-import { getImageURL } from "../helpers/FilckrSearch.helpers";
+import { APIResponse } from "../../types/FilckrSearch.types";
+import { getImageURL } from "../../helpers/FilckrSearch.helpers";
 
 const API_KEY = '513f1c3c888abd4225b7f9a3105a275f';
 
